@@ -1,0 +1,56 @@
+[gd_scene load_steps=11 format=3 uid="uid://botnaqnvwrd7l"]
+
+[ext_resource type="PackedScene" uid="uid://ddo2qo76bwjox" path="res://scenes/tilemap.tscn" id="1_k38s7"]
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_m7wuf"]
+[ext_resource type="PackedScene" uid="uid://dk32m762csoio" path="res://scenes/player.tscn" id="2_uq38o"]
+[ext_resource type="Script" path="res://scenes/bulletmanager.gd" id="4_2yyf1"]
+[ext_resource type="PackedScene" uid="uid://dmgskndk62x41" path="res://scenes/enemyspawner.tscn" id="4_6n65o"]
+[ext_resource type="PackedScene" uid="uid://bl3ct5ombiim2" path="res://scenes/bullet.tscn" id="5_shaoi"]
+[ext_resource type="PackedScene" uid="uid://d1fndhv6c6r6v" path="res://scenes/hud.tscn" id="7_76yuk"]
+[ext_resource type="PackedScene" uid="uid://k61b8mpp8gxt" path="res://scenes/win.tscn" id="8_1nevs"]
+[ext_resource type="PackedScene" uid="uid://dek2rgsbpd6py" path="res://scenes/game_over.tscn" id="9_7feaw"]
+[ext_resource type="PackedScene" uid="uid://b8eewcaftt6ak" path="res://scenes/newwave.tscn" id="10_d1nx4"]
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_m7wuf")
+
+[node name="world" parent="." instance=ExtResource("1_k38s7")]
+scale = Vector2(3, 3)
+
+[node name="player" parent="." instance=ExtResource("2_uq38o")]
+position = Vector2(-345, -81)
+
+[node name="bulletmanager" type="Node2D" parent="."]
+script = ExtResource("4_2yyf1")
+bullet_scene = ExtResource("5_shaoi")
+
+[node name="enemyspawner" parent="." instance=ExtResource("4_6n65o")]
+
+[node name="hud" parent="." instance=ExtResource("7_76yuk")]
+offset = Vector2(0, 768)
+transform = Transform2D(1, 0, 0, 1, 0, 768)
+
+[node name="win" parent="." instance=ExtResource("8_1nevs")]
+process_mode = 2
+visible = false
+
+[node name="game_over" parent="." instance=ExtResource("9_7feaw")]
+process_mode = 2
+visible = false
+
+[node name="newwave" parent="." instance=ExtResource("10_d1nx4")]
+process_mode = 2
+visible = false
+
+[node name="newwavetimer" type="Timer" parent="."]
+process_mode = 2
+wait_time = 3.0
+one_shot = true
+
+[node name="player_spawn_timer" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="shoot" from="player" to="bulletmanager" method="_on_player_shoot"]
+[connection signal="hit_p" from="enemyspawner" to="." method="_on_enemyspawner_hit_p"]
+[connection signal="timeout" from="newwavetimer" to="." method="_on_newwavetimer_timeout"]
+[connection signal="timeout" from="player_spawn_timer" to="." method="_on_player_spawn_timer_timeout"]

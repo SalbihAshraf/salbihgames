@@ -1,0 +1,59 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmgskndk62x41"]
+
+[ext_resource type="Script" path="res://scenes/enemyspawner.gd" id="1_jofun"]
+
+[node name="enemyspawner" type="Node2D"]
+script = ExtResource("1_jofun")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="MarkerNorth1" type="Marker2D" parent="."]
+position = Vector2(360, -50)
+
+[node name="MarkerNorth2" type="Marker2D" parent="."]
+position = Vector2(310, -50)
+
+[node name="MarkerNorth3" type="Marker2D" parent="."]
+position = Vector2(410, -50)
+
+[node name="MarkerNorth4" type="Marker2D" parent="."]
+position = Vector2(460, -50)
+
+[node name="MarkerEast1" type="Marker2D" parent="."]
+position = Vector2(800, 300)
+
+[node name="MarkerEast2" type="Marker2D" parent="."]
+position = Vector2(800, 350)
+
+[node name="MarkerEast3" type="Marker2D" parent="."]
+position = Vector2(800, 400)
+
+[node name="MarkerEast4" type="Marker2D" parent="."]
+position = Vector2(800, 450)
+
+[node name="MarkerSouth1" type="Marker2D" parent="."]
+position = Vector2(460, 800)
+
+[node name="MarkerSouth2" type="Marker2D" parent="."]
+position = Vector2(410, 800)
+
+[node name="MarkerSouth3" type="Marker2D" parent="."]
+position = Vector2(360, 800)
+
+[node name="MarkerSouth4" type="Marker2D" parent="."]
+position = Vector2(310, 800)
+
+[node name="MarkerWest1" type="Marker2D" parent="."]
+position = Vector2(-50, 300)
+
+[node name="MarkerWest2" type="Marker2D" parent="."]
+position = Vector2(-50, 350)
+
+[node name="MarkerWest3" type="Marker2D" parent="."]
+position = Vector2(-50, 400)
+
+[node name="MarkerWest4" type="Marker2D" parent="."]
+position = Vector2(-50, 450)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

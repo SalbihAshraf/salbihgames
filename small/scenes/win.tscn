@@ -1,0 +1,75 @@
+[gd_scene load_steps=5 format=3 uid="uid://k61b8mpp8gxt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3j3d2"]
+bg_color = Color(0, 0, 0, 0.356863)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n7dfs"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b1kkn"]
+bg_color = Color(0.364706, 0.364706, 0.364706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wx68y"]
+bg_color = Color(0.133333, 0.133333, 0.133333, 1)
+
+[node name="win" type="CanvasLayer"]
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 768.0
+offset_bottom = 816.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_3j3d2")
+
+[node name="Panel2" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -53.0
+offset_right = 200.0
+offset_bottom = 47.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3j3d2")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 70
+text = "YOU WIN"
+
+[node name="Button" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.5
+offset_top = 92.0
+offset_right = 50.5
+offset_bottom = 123.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_n7dfs")
+theme_override_styles/hover = SubResource("StyleBoxFlat_b1kkn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_wx68y")
+text = "PLAY AGAIN"

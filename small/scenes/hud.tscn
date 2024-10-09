@@ -1,0 +1,156 @@
+[gd_scene load_steps=19 format=3 uid="uid://d1fndhv6c6r6v"]
+
+[ext_resource type="Texture2D" uid="uid://dktqnqpsgfjv4" path="res://assets/heart.png" id="1_pwtrq"]
+[ext_resource type="Script" path="res://scenes/hud.gd" id="1_vdv0x"]
+[ext_resource type="Texture2D" uid="uid://crr4naaohb7i5" path="res://assets/goblin/goblin_idle_anim_f0.png" id="2_2gqyi"]
+[ext_resource type="Texture2D" uid="uid://m6alkcpq7ow3" path="res://assets/heartspritesheet.png" id="3_pksqm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ujv3"]
+bg_color = Color(0.443137, 0.6, 0.870588, 1)
+border_width_top = 2
+border_color = Color(0.109804, 0.109804, 0.109804, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l56ui"]
+atlas = ExtResource("3_pksqm")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hre7l"]
+atlas = ExtResource("3_pksqm")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_phu6f"]
+atlas = ExtResource("3_pksqm")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uswdh"]
+atlas = ExtResource("3_pksqm")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m3ppo"]
+atlas = ExtResource("3_pksqm")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i0wwo"]
+atlas = ExtResource("3_pksqm")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mwt10"]
+atlas = ExtResource("3_pksqm")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7u0l"]
+atlas = ExtResource("3_pksqm")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t0igb"]
+atlas = ExtResource("3_pksqm")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1lrbb"]
+atlas = ExtResource("3_pksqm")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_artsy"]
+atlas = ExtResource("3_pksqm")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ve6u"]
+atlas = ExtResource("3_pksqm")
+region = Rect2(32, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l4261"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l56ui")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hre7l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_phu6f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uswdh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m3ppo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i0wwo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mwt10")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a7u0l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t0igb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1lrbb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_artsy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ve6u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="hud" type="CanvasLayer"]
+script = ExtResource("1_vdv0x")
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 768.0
+offset_bottom = 48.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_6ujv3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(22, 24)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_l4261")
+frame_progress = 0.251352
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(24, 24)
+scale = Vector2(2, 2)
+texture = ExtResource("1_pwtrq")
+
+[node name="lives" type="Label" parent="."]
+offset_left = 51.0
+offset_top = 4.0
+offset_right = 109.0
+offset_bottom = 62.0
+theme_override_font_sizes/font_size = 30
+text = "X 3"
+
+[node name="waves" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -60.5
+offset_right = 60.5
+offset_bottom = 52.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 35
+text = "Wave 1"
+horizontal_alignment = 1
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(667, 17)
+scale = Vector2(3, 3)
+texture = ExtResource("2_2gqyi")
+
+[node name="goblins" type="Label" parent="."]
+offset_left = 693.0
+offset_top = 4.0
+offset_right = 764.0
+offset_bottom = 62.0
+theme_override_font_sizes/font_size = 30
+text = "X 10"
