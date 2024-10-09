@@ -1,0 +1,109 @@
+[gd_scene load_steps=11 format=3 uid="uid://b1nofxcpfued0"]
+
+[ext_resource type="Script" path="res://scenes/characters/player.gd" id="1_0wlip"]
+[ext_resource type="Texture2D" uid="uid://dxljxibreji2q" path="res://spritesheets/1 idle.png" id="1_i0yw2"]
+[ext_resource type="PackedScene" uid="uid://c2wh1a56bfp5v" path="res://scenes/guns/pistol.tscn" id="3_2lu67"]
+
+[sub_resource type="Animation" id="Animation_ukww6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(2, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ngr2r"]
+resource_name = "idle_down"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(0, 1), Vector2i(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_2pmqa"]
+resource_name = "idle_right"
+length = 1.00001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2i(2, 0), Vector2i(2, 1), Vector2i(2, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_o4jht"]
+resource_name = "idle_up"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2i(1, 0), Vector2i(1, 1), Vector2i(1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_lhahs"]
+resource_name = "walk_right"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ua7p1"]
+_data = {
+"RESET": SubResource("Animation_ukww6"),
+"idle_down": SubResource("Animation_ngr2r"),
+"idle_right": SubResource("Animation_2pmqa"),
+"idle_up": SubResource("Animation_o4jht"),
+"walk_right": SubResource("Animation_lhahs")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7tvol"]
+radius = 8.0
+
+[node name="player" type="CharacterBody2D"]
+scale = Vector2(3, 3)
+script = ExtResource("1_0wlip")
+
+[node name="idle" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+texture = ExtResource("1_i0yw2")
+hframes = 3
+vframes = 2
+frame = 2
+
+[node name="pistol" parent="idle" instance=ExtResource("3_2lu67")]
+show_behind_parent = true
+position = Vector2(0, 1)
+
+[node name="idle_animation" type="AnimationPlayer" parent="idle"]
+libraries = {
+"": SubResource("AnimationLibrary_ua7p1")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_7tvol")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]

@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://vi00lg28jlge"]
+
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_16c3b"]
+[ext_resource type="PackedScene" uid="uid://b1nofxcpfued0" path="res://scenes/characters/player.tscn" id="1_gbifi"]
+[ext_resource type="Texture2D" uid="uid://jx7dx3rejwqa" path="res://spritesheets/5 punch.png" id="3_icyt8"]
+[ext_resource type="PackedScene" uid="uid://cyrnw4qxenc40" path="res://scenes/characters/enemy.tscn" id="4_074b5"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_k8xdh"]
+vertices = PackedVector2Array(39, 20, 1115, 23, 1111, 624, 33, 626)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(39, 20, 1115, 23, 1111, 624, 33, 626)])
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_16c3b")
+
+[node name="floor" type="Sprite2D" parent="."]
+position = Vector2(575, 323)
+scale = Vector2(12, 5.0625)
+texture = ExtResource("3_icyt8")
+
+[node name="player" parent="." instance=ExtResource("1_gbifi")]
+position = Vector2(102.17, 125.305)
+
+[node name="projectiles" type="Node2D" parent="."]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+visible = false
+navigation_polygon = SubResource("NavigationPolygon_k8xdh")
+
+[node name="enemy" parent="." instance=ExtResource("4_074b5")]
+position = Vector2(572, 302)
+
+[connection signal="gun_shot" from="player" to="." method="_on_player_gun_shot"]
