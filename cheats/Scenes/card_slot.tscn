@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://be35nrptex0wm"]
+
+[ext_resource type="Texture2D" uid="uid://baprk7j7gl38e" path="res://Playing Cards Pixelart Asset Pack/Sprites/Card Back 3.png" id="1_56cc0"]
+[ext_resource type="Script" path="res://Scenes/card_slot.gd" id="1_to386"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bwhnm"]
+size = Vector2(40, 66)
+
+[node name="CardSlot" type="Node2D"]
+scale = Vector2(4, 4)
+script = ExtResource("1_to386")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_56cc0")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_bwhnm")

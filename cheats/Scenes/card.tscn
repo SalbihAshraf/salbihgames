@@ -1,0 +1,82 @@
+[gd_scene load_steps=8 format=3 uid="uid://c5uxl7xmuthep"]
+
+[ext_resource type="Script" path="res://Scenes/card.gd" id="1_dtqqg"]
+[ext_resource type="Texture2D" uid="uid://px874gebjqqq" path="res://Playing Cards Pixelart Asset Pack/Sprites/Clubs 1.png" id="2_wmq0c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x4tfp"]
+size = Vector2(40, 66)
+
+[sub_resource type="Animation" id="Animation_5gaxf"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CardImage:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_w8a2u"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CardImage:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0.07, -0.25, 0, 0.25, 0, 0.06, -0.25, 0, 0.25, 0, -0.06, -0.25, 0, 0.25, 0, -0.07, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.5, 1.5, 2)
+}
+
+[sub_resource type="Animation" id="Animation_mgxkc"]
+resource_name = "paused"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CardImage:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t2ol1"]
+_data = {
+"RESET": SubResource("Animation_5gaxf"),
+"idle": SubResource("Animation_w8a2u"),
+"paused": SubResource("Animation_mgxkc")
+}
+
+[node name="Card" type="Node2D"]
+scale = Vector2(4, 4)
+script = ExtResource("1_dtqqg")
+card_texture = ExtResource("2_wmq0c")
+
+[node name="CardImage" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture = ExtResource("2_wmq0c")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_x4tfp")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_t2ol1")
+}
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
