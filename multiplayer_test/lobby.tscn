@@ -18,6 +18,7 @@ text = "JOIN
 "
 
 [node name="Start" type="Button" parent="."]
+visible = false
 offset_left = 520.0
 offset_top = 324.0
 offset_right = 626.0

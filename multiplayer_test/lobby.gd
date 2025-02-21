@@ -7,7 +7,8 @@ extends Node2D
 @onready var label: Label = $Label
 
 
-@export var Address = "127.0.0.1"
+#@export var Address = "127.0.0.1"
+@export var Address = "167.235.137.248"
 @export var port = 8910
 
 var peer
@@ -65,13 +66,14 @@ func _process(delta: float) -> void:
 @rpc("any_peer", "call_local")
 func StartGame():
 	# ///NEED MAIN SCENE TO LOAD///
+	# var scene = load("res://game.tscn").instantiate()
 	var scene = load("res://chat.tscn").instantiate()
 	get_tree().root.add_child(scene)
 	self.hide()
 	
 func hostGame():
 	peer = ENetMultiplayerPeer.new()
-	var error = peer.create_server(port, 2)
+	var error = peer.create_server(port, 16)
 	if error != OK:
 		print("cannot host: " + error)
 		return
@@ -109,6 +111,7 @@ func _on_join_pressed() -> void:
 	label.text = "Waiting for host to start"
 	host.hide()
 	join.hide()
+	start.show()
 	username.hide()
 	pass # Replace with function body.
 
