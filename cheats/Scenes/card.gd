@@ -2,14 +2,17 @@ extends Node2D
 
 
 @export var card_texture: Texture2D
+@onready
+var sprite = %CardImage
 
 signal hovered
 signal hovered_off
 
 var hand_position
 
-var suits = ["Clubs", "Spades", "Hearts", "Diamonds"]
-var ranks = [1,2,3,4,5,6,7,8,9,10,11,12,13]
+var suit
+var rank
+var card
 
 
 
@@ -17,9 +20,7 @@ var ranks = [1,2,3,4,5,6,7,8,9,10,11,12,13]
 func _ready() -> void:
 	%CardImage.texture = card_texture
 	
-	var card_suit = suits.pick_random()
-	var rank = ranks.pick_random()
-	%CardImage.texture = load("res://Playing Cards Pixelart Asset Pack/Sprites/" + card_suit + " " + str(rank) + ".png")
+	%CardImage.texture = load("res://Playing Cards Pixelart Asset Pack/Sprites/" + str(suit) + " " + str(rank) + ".png")
 	$AnimationPlayer.play("idle")
 	$AnimationPlayer.speed_scale = randf_range(0.5, 1)
 	%CardImage.rotation = randf_range(0.07, -0.07)

@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdtd1wxc2k4r3"]
+
+[ext_resource type="Script" path="res://deck.gd" id="1_783eq"]
+[ext_resource type="PackedScene" uid="uid://smmmrrx45xf5" path="res://card.tscn" id="2_g4d3y"]
+
+[node name="deck" type="Node2D"]
+script = ExtResource("1_783eq")
+card_scene = ExtResource("2_g4d3y")

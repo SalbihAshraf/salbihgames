@@ -8,6 +8,9 @@ var card_being_dragged
 var is_hovering_on_card : bool
 var player_hand_reference
 
+var suits = ["Clubs", "Spades", "Hearts", "Diamonds"]
+var ranks = [1,2,3,4,5,6,7,8,9,10,11,12,13]
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -40,11 +43,12 @@ func finish_drag():
 	card_being_dragged.scale = Vector2(4, 4)
 	var card_slot_found = raycast_check_for_card_slot()
 	if card_slot_found and not card_slot_found.card_in_slot:
-		player_hand_reference.remove_card_from_hand(card_being_dragged)
+		player_hand_reference.remove_card_from_hand(card_being_dragged, true)
 		card_being_dragged.position = card_slot_found.position
-		card_being_dragged.stop_animation()
+		#card_being_dragged.stop_animation()
 		card_being_dragged.get_node("Area2D/CollisionShape2D").disabled = true
-		card_slot_found.card_in_slot = true
+		card_slot_found.card_in_slot = card_being_dragged
+		
 	else:
 		player_hand_reference.add_card_to_hand(card_being_dragged)
 	card_being_dragged = null
@@ -74,14 +78,15 @@ func on_hovered_off_card(card):
 
 func highlight_card(card, hovered):
 	if hovered:
-		card.scale = Vector2(4.5, 4.5)
+		#card.scale = Vector2(4.5, 4.5)
 
 		var tween = get_tree().create_tween()
-		tween.tween_property(card, "scale", Vector2(5,5), 0.1)
+		tween.tween_property(card, "scale", Vector2(4.5,4.5), 0.1)
+		#tween.tween_property(card.sprite, "position", Vector2(300, 10), 0.1)
 		
 		card.z_index = 2
 	else:
-		card.scale = Vector2(4, 4)
+		#card.scale = Vector2(4, 4)
 		var tween = get_tree().create_tween()
 		tween.tween_property(card, "scale", Vector2(4,4), 0.1)
 		
