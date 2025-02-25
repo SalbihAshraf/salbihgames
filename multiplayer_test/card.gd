@@ -3,7 +3,6 @@ extends Node2D
 var suit = "Spades"
 var rank = 11
 @onready var sprite_2d: Sprite2D = $Sprite2D
-
 # CARD STATES
 var hovered : bool = false
 var clicked : bool = false
@@ -14,7 +13,6 @@ func _ready() -> void:
 	set_texture()
 	pass # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
@@ -24,11 +22,11 @@ func _input(event: InputEvent) -> void:
 		if hovered:
 			clicked = !clicked
 			if !clicked:
+				#check_highest_z_index()
 				clicked_animation()
 			else:
 				unclicked_animation()
-			print(clicked)
-		
+			print([suit, rank])
 		
 
 func set_texture():
@@ -48,21 +46,24 @@ func set_texture():
 func _on_area_2d_mouse_entered() -> void:
 	hovered = true
 	if !clicked:
-		
-		var tween = get_tree().create_tween()
-		tween.set_trans(Tween.TRANS_LINEAR)
-		tween.tween_property(sprite_2d, "scale", Vector2(2.5,2.5), 0.1)
+		hover_animation()
 	pass # Replace with function body.
 
+func hover_animation():
+	var tween = get_tree().create_tween()
+	tween.set_trans(Tween.TRANS_LINEAR)
+	tween.tween_property(sprite_2d, "scale", Vector2(2.5,2.5), 0.1)
 
 func _on_area_2d_mouse_exited() -> void:
 	hovered = false
 	if !clicked:
-		
-		var tween = get_tree().create_tween()
-		tween.set_trans(Tween.TRANS_LINEAR)
-		tween.tween_property(sprite_2d, "scale", Vector2(2,2), 0.1)
+		un_hover_animation()
 	pass # Replace with function body.
+
+func un_hover_animation():
+	var tween = get_tree().create_tween()
+	tween.set_trans(Tween.TRANS_LINEAR)
+	tween.tween_property(sprite_2d, "scale", Vector2(2,2), 0.1)
 
 func clicked_animation():
 	var tween = get_tree().create_tween()

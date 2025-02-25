@@ -7,7 +7,9 @@ extends Node2D
 @onready var label: Label = $Label
 
 
+
 #@export var Address = "127.0.0.1"
+
 @export var Address = "167.235.137.248"
 @export var port = 8910
 
@@ -20,8 +22,13 @@ func _ready() -> void:
 	multiplayer.connected_to_server.connect(connected_to_server)
 	multiplayer.connection_failed.connect(connection_failed)
 	if "--server" in OS.get_cmdline_args():
+		Address = "167.235.137.248"
 		hostGame()
-	pass # Replace with function body.
+		
+	#hostGame()
+	#SendPlayerInformation("salbih", multiplayer.get_unique_id())
+	#multiplayer.set_multiplayer_peer(peer)
+	#StartGame()
 
 # Called on Server and Clients
 func peer_connected(id):
@@ -68,7 +75,7 @@ func StartGame():
 	# ///NEED MAIN SCENE TO LOAD///
 	# var scene = load("res://game.tscn").instantiate()
 	var scene = load("res://chat.tscn").instantiate()
-	get_tree().root.add_child(scene)
+	get_tree().root.add_child.call_deferred(scene)
 	self.hide()
 	
 func hostGame():

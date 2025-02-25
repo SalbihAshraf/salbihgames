@@ -9,3 +9,9 @@ script = ExtResource("1_e07jy")
 player_scene = ExtResource("1_s8mld")
 
 [node name="deck" parent="." instance=ExtResource("2_f8t77")]
+
+[node name="draw_gap" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="draw_gap" to="." method="_on_draw_gap_timeout"]

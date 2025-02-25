@@ -8,6 +8,7 @@ size = Vector2(96, 128)
 
 [node name="card" type="Node2D"]
 position = Vector2(605, 327)
+scale = Vector2(1.5, 1.5)
 script = ExtResource("1_b4d5x")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
