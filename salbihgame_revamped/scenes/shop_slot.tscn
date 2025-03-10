@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://ylmlyl5qao7w"]
+
+[ext_resource type="FontFile" uid="uid://b4ub1bi5g0p3f" path="res://fonts/TeenyTinyPixls-o2zo.ttf" id="1_jm3kp"]
+[ext_resource type="Script" path="res://scenes/shop_slot.gd" id="1_q1bbm"]
+[ext_resource type="Texture2D" uid="uid://bjwrkhyfedsew" path="res://assets/heart_item.png" id="2_b3yuv"]
+
+[node name="ShopSlot" type="PanelContainer"]
+custom_minimum_size = Vector2(128, 148)
+script = ExtResource("1_q1bbm")
+
+[node name="buy_button" type="Button" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="buy_button"]
+layout_mode = 0
+
+[node name="Label" type="Label" parent="buy_button/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_jm3kp")
+theme_override_font_sizes/font_size = 16
+text = "150$"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="buy_button/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = ExtResource("2_b3yuv")

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="DamageBulletStrategy" load_steps=3 format=3 uid="uid://dbunlysks36o5"]
+
+[ext_resource type="Script" path="res://bullet_mods/damage_bullet_strategy.gd" id="1_b4onb"]
+[ext_resource type="Texture2D" uid="uid://2ygoha0kiale" path="res://assets/gun_item.png" id="2_xm5rw"]
+
+[resource]
+script = ExtResource("1_b4onb")
+texture = ExtResource("2_xm5rw")
+upgrade_text = "Damage"
+price = 500.0

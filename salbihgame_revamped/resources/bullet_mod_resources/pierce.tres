@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="PierceBulletStrategy" load_steps=3 format=3 uid="uid://cgbt7q5o0yu6v"]
+
+[ext_resource type="Script" path="res://bullet_mods/pierce_bullet_strategy.gd" id="1_fo1oa"]
+[ext_resource type="Texture2D" uid="uid://bfy26ywu04scy" path="res://assets/pierce_item.png" id="2_8ihyw"]
+
+[resource]
+script = ExtResource("1_fo1oa")
+texture = ExtResource("2_8ihyw")
+upgrade_text = "Pierce"
+price = 250.0

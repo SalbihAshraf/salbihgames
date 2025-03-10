@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=3 uid="uid://pj43mv4hcjpv"]
+
+[ext_resource type="Texture2D" uid="uid://8kyk7ld41pd4" path="res://assets/bullet.png" id="1_6c2qj"]
+[ext_resource type="Script" path="res://scenes/bullet.gd" id="1_vjkpj"]
+[ext_resource type="Texture2D" uid="uid://b1vn8xlxha4q2" path="res://assets/pierce_bullet1.png" id="3_5qlhc"]
+[ext_resource type="Texture2D" uid="uid://cknsodf6hf0l1" path="res://assets/pierce_bullet2.png" id="4_dpuys"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eoix8"]
+atlas = ExtResource("1_6c2qj")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5hxc6"]
+atlas = ExtResource("1_6c2qj")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_63wfb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eoix8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5hxc6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_5qlhc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_dpuys")
+}],
+"loop": true,
+"name": &"pierce",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w6uv7"]
+radius = 8.0
+
+[node name="bullet" type="Area2D"]
+modulate = Color(0.94902, 0.921569, 0.921569, 1)
+scale = Vector2(0.4, 0.4)
+collision_layer = 8
+collision_mask = 3
+script = ExtResource("1_vjkpj")
+speed = 100
+damage = 1
+max_pierce = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_63wfb")
+animation = &"pierce"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_w6uv7")
+
+[node name="bullet_lifetime" type="Timer" parent="."]
+wait_time = 5.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="bullet_lifetime" to="." method="_on_bullet_lifetime_timeout"]

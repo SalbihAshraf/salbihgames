@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhocnqacxo355"]
+
+[ext_resource type="Texture2D" uid="uid://wjfm3wg4hn26" path="res://assets/circle.png" id="1_0ysw5"]
+[ext_resource type="Texture2D" uid="uid://b82rb6kneq22m" path="res://assets/light.png" id="2_yj4k7"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_jkik6"]
+polygon = PackedVector2Array(141, 124, 141, 100, 173, 100, 173, 102, 143, 102, 143, 124)
+
+[node name="light" type="Node2D"]
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -4)
+energy = 2.0
+shadow_enabled = true
+texture = ExtResource("1_0ysw5")
+texture_scale = 0.22
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+visible = false
+occluder = SubResource("OccluderPolygon2D_jkik6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+light_mask = 2
+texture = ExtResource("2_yj4k7")

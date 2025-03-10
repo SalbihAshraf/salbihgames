@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbwkan1l4l43j"]
+
+[ext_resource type="Texture2D" uid="uid://db54wu1j0hxna" path="res://assets/spawn_hole.png" id="1_4e0yy"]
+[ext_resource type="Script" path="res://scenes/spawn_hole.gd" id="1_gdla3"]
+
+[sub_resource type="Gradient" id="Gradient_tk5mr"]
+colors = PackedColorArray(0.309021, 0.180565, 0.157607, 1, 1, 1, 1, 0)
+
+[node name="spawn_hole" type="Node2D"]
+script = ExtResource("1_gdla3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_4e0yy")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 12
+lifetime = 2.0
+one_shot = true
+speed_scale = 3.0
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 6.0
+initial_velocity_max = 12.0
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+color = Color(0.254902, 0.145098, 0.12549, 1)
+color_ramp = SubResource("Gradient_tk5mr")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

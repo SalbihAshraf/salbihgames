@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="PlayerReloadStrategy" load_steps=3 format=3 uid="uid://c7tx21mrvvste"]
+
+[ext_resource type="Script" path="res://bullet_mods/player_reload_strategy.gd" id="1_p28ts"]
+[ext_resource type="Texture2D" uid="uid://dm3mjjsq4boon" path="res://assets/reload_item.png" id="2_c4053"]
+
+[resource]
+script = ExtResource("1_p28ts")
+texture = ExtResource("2_c4053")
+upgrade_text = "player_reload"
+price = 400.0

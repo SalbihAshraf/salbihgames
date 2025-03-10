@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://cx8l4bi0835ys"]
+
+[ext_resource type="Script" path="res://upgrade.gd" id="1_wqnq2"]
+[ext_resource type="Texture2D" uid="uid://bfy26ywu04scy" path="res://assets/pierce_item.png" id="2_5fhc2"]
+[ext_resource type="Script" path="res://bullet_mods/base_bullet_strategy.gd" id="2_qbtij"]
+[ext_resource type="FontFile" uid="uid://b4ub1bi5g0p3f" path="res://fonts/TeenyTinyPixls-o2zo.ttf" id="4_g710s"]
+
+[sub_resource type="Resource" id="Resource_xufpd"]
+script = ExtResource("2_qbtij")
+texture = ExtResource("2_5fhc2")
+upgrade_text = "Pierce"
+price = 100
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_642or"]
+radius = 7.0
+
+[node name="upgrade" type="Area2D" node_paths=PackedStringArray("upgrade_label", "sprite")]
+collision_layer = 16
+collision_mask = 4
+script = ExtResource("1_wqnq2")
+upgrade_label = NodePath("UpgradeLabel")
+sprite = NodePath("Sprite2D")
+price = 100
+bullet_strategy = SubResource("Resource_xufpd")
+needs_update = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_642or")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_5fhc2")
+
+[node name="UpgradeLabel" type="Label" parent="."]
+offset_left = -16.0
+offset_top = -14.0
+offset_right = 14.0
+offset_bottom = -7.0
+theme_override_fonts/font = ExtResource("4_g710s")
+theme_override_font_sizes/font_size = 5
+text = "Pierce"
+horizontal_alignment = 1

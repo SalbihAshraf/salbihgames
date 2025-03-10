@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="MultiBulletStrategy" load_steps=3 format=3 uid="uid://nphaxu5eod1c"]
+
+[ext_resource type="Script" path="res://bullet_mods/multi_bulllet_strategy.gd" id="1_gnod8"]
+[ext_resource type="Texture2D" uid="uid://bjwrkhyfedsew" path="res://assets/heart_item.png" id="2_lwfyb"]
+
+[resource]
+script = ExtResource("1_gnod8")
+texture = ExtResource("2_lwfyb")
+upgrade_text = "Multi"
+price = 200.0

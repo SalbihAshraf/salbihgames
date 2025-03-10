@@ -1,0 +1,161 @@
+[gd_scene load_steps=24 format=3 uid="uid://2jliossg20ya"]
+
+[ext_resource type="Script" path="res://scenes/shopkeeper.gd" id="1_3ot81"]
+[ext_resource type="Texture2D" uid="uid://cnmspxbc56fbk" path="res://assets/shopkeeper_1.png" id="1_so2ks"]
+[ext_resource type="Texture2D" uid="uid://coe8emrhhq1o5" path="res://assets/shopkeeper_2.png" id="2_6s4av"]
+[ext_resource type="PackedScene" uid="uid://cx8l4bi0835ys" path="res://scenes/upgrade.tscn" id="2_idtod"]
+[ext_resource type="Texture2D" uid="uid://bp1q2l6wfj1kq" path="res://assets/cash_bubble-sheet.png" id="4_0yu8y"]
+[ext_resource type="PackedScene" uid="uid://bsallt8qjkun4" path="res://scenes/shop_interface.tscn" id="5_ak3ss"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cgkhb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_so2ks")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_6s4av")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qi83r"]
+radius = 7.0
+height = 26.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4dppx"]
+atlas = ExtResource("4_0yu8y")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1tdq0"]
+atlas = ExtResource("4_0yu8y")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tvyqf"]
+atlas = ExtResource("4_0yu8y")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h57gf"]
+atlas = ExtResource("4_0yu8y")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1afkb"]
+atlas = ExtResource("4_0yu8y")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hpgoo"]
+atlas = ExtResource("4_0yu8y")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hh5cn"]
+atlas = ExtResource("4_0yu8y")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kcxs4"]
+atlas = ExtResource("4_0yu8y")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5tjo"]
+atlas = ExtResource("4_0yu8y")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dw6a2"]
+atlas = ExtResource("4_0yu8y")
+region = Rect2(144, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lf2dp"]
+atlas = ExtResource("4_0yu8y")
+region = Rect2(160, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_acuhr"]
+atlas = ExtResource("4_0yu8y")
+region = Rect2(176, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x37ur"]
+atlas = ExtResource("4_0yu8y")
+region = Rect2(192, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cq1am"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4dppx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1tdq0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tvyqf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h57gf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1afkb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hpgoo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hh5cn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kcxs4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y5tjo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dw6a2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lf2dp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_acuhr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x37ur")
+}],
+"loop": false,
+"name": &"default",
+"speed": 24.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gabah"]
+size = Vector2(20, 9)
+
+[node name="shopkeeper" type="StaticBody2D"]
+collision_mask = 6
+script = ExtResource("1_3ot81")
+upgrade_scene = ExtResource("2_idtod")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_cgkhb")
+autoplay = "default"
+frame_progress = 0.576517
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 9)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_qi83r")
+
+[node name="cash_bubble" type="AnimatedSprite2D" parent="."]
+position = Vector2(-15, -12)
+sprite_frames = SubResource("SpriteFrames_cq1am")
+frame = 12
+frame_progress = 1.0
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 22)
+shape = SubResource("RectangleShape2D_gabah")
+
+[node name="shop_interface" parent="Area2D" instance=ExtResource("5_ak3ss")]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

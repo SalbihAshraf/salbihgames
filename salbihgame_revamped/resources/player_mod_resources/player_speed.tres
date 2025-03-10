@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PlayerSpeedStrategy" load_steps=3 format=3 uid="uid://cjv0lfyv28w1l"]
+
+[ext_resource type="Script" path="res://bullet_mods/player_speed_strategy.gd" id="1_w3k61"]
+[ext_resource type="Texture2D" uid="uid://bjwrkhyfedsew" path="res://assets/heart_item.png" id="2_qb40d"]
+
+[resource]
+script = ExtResource("1_w3k61")
+texture = ExtResource("2_qb40d")
+upgrade_text = "player_speed"

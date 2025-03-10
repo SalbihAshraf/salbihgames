@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://bc1m74cb0ut5w"]
+
+[ext_resource type="Script" path="res://client/scripts/player.gd" id="1_cs8gl"]
+
+[node name="player" type="Node2D" groups=["players"]]
+script = ExtResource("1_cs8gl")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 590.0
+offset_bottom = 296.0
+
+[node name="player_hand_contents" type="Label" parent="."]
+offset_left = 1.0
+offset_top = 42.0
+offset_right = 293.0
+offset_bottom = 65.0
+
+[node name="deck_contents" type="Label" parent="."]
+offset_left = 2.0
+offset_top = 104.0
+offset_right = 294.0
+offset_bottom = 127.0
+autowrap_mode = 3
+
+[node name="test_text" type="Label" parent="."]
+offset_left = 517.0
+offset_top = 394.0
+offset_right = 557.0
+offset_bottom = 417.0

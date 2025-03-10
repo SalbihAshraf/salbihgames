@@ -1,0 +1,198 @@
+[gd_scene load_steps=10 format=3 uid="uid://bsallt8qjkun4"]
+
+[ext_resource type="Script" path="res://scenes/shop_interface.gd" id="1_rw7vo"]
+[ext_resource type="FontFile" uid="uid://b4ub1bi5g0p3f" path="res://fonts/TeenyTinyPixls-o2zo.ttf" id="1_s6u2i"]
+[ext_resource type="PackedScene" uid="uid://ylmlyl5qao7w" path="res://scenes/shop_slot.tscn" id="3_hhnht"]
+[ext_resource type="Texture2D" uid="uid://bqf4gqxa42akg" path="res://assets/ibby.png" id="3_stlox"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8535s"]
+bg_color = Color(0, 0, 0, 0.458824)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.952941, 0.94902, 0.752941, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="Animation" id="Animation_jid6b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(272, 360)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(60, 90)]
+}
+
+[sub_resource type="Animation" id="Animation_c6jks"]
+resource_name = "trans_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.6, 1),
+"update": 0,
+"values": [Vector2(272, 1080), Vector2(272, 360)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.6, 1),
+"update": 0,
+"values": [Vector2(60, -610), Vector2(60, 90)]
+}
+
+[sub_resource type="Animation" id="Animation_sa3l1"]
+resource_name = "trans_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.2, 1),
+"update": 0,
+"values": [Vector2(60, 90), Vector2(60, 790)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.2, 1),
+"update": 0,
+"values": [Vector2(272, 360), Vector2(272, -360)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5ofw3"]
+_data = {
+"RESET": SubResource("Animation_jid6b"),
+"trans_in": SubResource("Animation_c6jks"),
+"trans_out": SubResource("Animation_sa3l1")
+}
+
+[node name="shop_interface" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_rw7vo")
+slot_scene = ExtResource("3_hhnht")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -480.0
+offset_top = -270.0
+offset_right = 480.0
+offset_bottom = 270.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8535s")
+
+[node name="Button" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -120.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 70.0
+grow_horizontal = 0
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 0.784314)
+theme_override_fonts/font = ExtResource("1_s6u2i")
+theme_override_font_sizes/font_size = 25
+text = "Leave"
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+offset_left = 450.0
+offset_top = 30.0
+offset_right = 550.0
+offset_bottom = 74.0
+theme_override_fonts/font = ExtResource("1_s6u2i")
+theme_override_font_sizes/font_size = 25
+text = "POINTS:
+350"
+
+[node name="Label2" type="Label" parent="Panel"]
+layout_mode = 1
+offset_left = 26.0
+offset_top = 12.0
+offset_right = 426.0
+offset_bottom = 108.0
+theme_override_fonts/font = ExtResource("1_s6u2i")
+theme_override_font_sizes/font_size = 25
+text = "Whatda need?
+some wheels?
+Im jibby on the spot"
+horizontal_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -574.0
+offset_top = -381.0
+offset_right = -50.0
+offset_bottom = -81.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="GridContainer" type="GridContainer" parent="Panel/PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 4
+
+[node name="ShopSlot" parent="Panel/PanelContainer/GridContainer" instance=ExtResource("3_hhnht")]
+layout_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5ofw3")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(272, 360)
+scale = Vector2(16, 16)
+texture = ExtResource("3_stlox")
+
+[connection signal="pressed" from="Panel/Button" to="." method="_on_button_pressed"]
