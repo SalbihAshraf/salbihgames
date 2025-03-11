@@ -107,12 +107,25 @@ func animate_card_to_rotation(card, new_rotation):
 	tween.tween_property(card, "rotation_degrees", new_rotation, 0.2).set_ease(Tween.EASE_IN)
 	await tween.finished
 
+func animate_card_to_pile(card, new_position):
+	var tween_pos = get_tree().create_tween()
+	var tween_scale = get_tree().create_tween()
+	var tween_rotate = get_tree().create_tween()
+	
+	GameManager.random = randf_range(-1, 1)
+	await tween_scale.tween_property(card.card_face_texture, "scale", Vector2(1.5, 1.5), 0.2)
+	tween_rotate.tween_property(card.card_face_texture, "rotation", GameManager.random, 0.2)
+	tween_scale.tween_property(card.card_face_texture, "scale", Vector2(1, 1), 0.2)
+	tween_pos.tween_property(card, "position", new_position, 0.4).set_ease(Tween.EASE_IN)
+	await tween_pos.finished
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
 func _on_play_pressed() -> void:
 	if current_clicked_card:
+		var new_pos = player.client.pile.position
+		await animate_card_to_pile(current_clicked_card, new_pos)
 		hand.erase(current_clicked_card)
 		player.play_card(current_clicked_card)
 		remove_child(current_clicked_card)
@@ -159,3 +172,6 @@ func _input(event: InputEvent) -> void:
 			var card = raycast_check_for_card()
 			if card:
 				current_clicked_card = card
+
+
+	

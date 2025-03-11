@@ -46,6 +46,7 @@ grow_vertical = 2
 texture = ExtResource("3_vluqm")
 
 [node name="chat_box" parent="Control" instance=ExtResource("4_n7wv5")]
+z_index = 1
 custom_minimum_size = Vector2(400, 200)
 layout_mode = 1
 anchors_preset = 1
