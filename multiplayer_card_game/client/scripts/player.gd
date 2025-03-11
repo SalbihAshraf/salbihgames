@@ -57,18 +57,23 @@ func draw_card():
 	add_to_hand.rpc(picked_card)
 	
 func play_card(card):
-	display_card.rpc(card.suit, card.rank)
+	display_card.rpc(card.suit, card.rank, id)
 	player_hand.erase([card.suit, card.rank])
 
 @rpc("any_peer", "call_local")
-func display_card(suit, rank):
+func display_card(suit, rank, player_id):
 	var new_card: Card = card_scene.instantiate()
 	new_card.suit = suit
 	new_card.rank = rank
 	new_card.rotation += randf_range(-1, 1)
-	
+	for i in get_tree().get_nodes_in_group("players"):
+		if i.id == player_id:
+			i.player_hand.erase([suit, rank])
 	client.pile.contents.append([suit, rank])
 	client.pile.add_child(new_card)
+
+
+	
 
 func display_players_cards():
 	var string = ""
