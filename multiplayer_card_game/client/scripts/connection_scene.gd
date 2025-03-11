@@ -8,10 +8,11 @@ extends Control
 @onready var start: Button = $VBoxContainer/start
 @onready var start_game: Label = $VBoxContainer/start_game
 
-@export var Address = "127.0.0.1"
 
+@export_enum("127.0.0.1", "167.235.137.248") var Address: String = "127.0.0.1"
+#@export var Address = "127.0.0.1"
 #@export var Address = "167.235.137.248"
-@export var port = 8910
+@export var port: int = 8910
 
 var peer
 
@@ -25,12 +26,15 @@ func _ready() -> void:
 		Address = "167.235.137.248"
 		hostGame()
 	
-	#if OS.get_cmdline_args()[1] == "host":
-		#host_testing()
-	#elif OS.get_cmdline_args()[1] == "client":
-		#client_testing()
-		#StartGame.rpc()
-	#hostGame()
+	if "host" in OS.get_cmdline_args():
+		username.text = "salbih"
+		_on_host_pressed()
+	elif "client" in OS.get_cmdline_args():
+		await get_tree().create_timer(0.1).timeout
+		username.text = "jakey"
+		_on_join_pressed()
+		await get_tree().create_timer(0.1).timeout
+		StartGame.rpc()
 	#SendPlayerInformation("salbih", multiplayer.get_unique_id())
 	#multiplayer.set_multiplayer_peer(peer)
 	#StartGame()
@@ -91,7 +95,7 @@ func hostGame():
 	peer = ENetMultiplayerPeer.new()
 	var error = peer.create_server(port, 8)
 	if error != OK:
-		print("cannot host: " + error)
+		print("cannot host: " + str(error))
 		return
 	peer.get_host().compress(ENetConnection.COMPRESS_RANGE_CODER)
 	multiplayer.set_multiplayer_peer(peer)

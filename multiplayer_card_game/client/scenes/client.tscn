@@ -1,11 +1,77 @@
-[gd_scene load_steps=4 format=3 uid="uid://dfiasn6rdddtv"]
+[gd_scene load_steps=10 format=3 uid="uid://dfiasn6rdddtv"]
 
 [ext_resource type="PackedScene" uid="uid://bc1m74cb0ut5w" path="res://client/scenes/player.tscn" id="1_8q2cd"]
 [ext_resource type="Script" path="res://client/scripts/client.gd" id="1_eont2"]
 [ext_resource type="PackedScene" uid="uid://dhbr7dlngnvxx" path="res://client/scenes/deck.tscn" id="3_cgyhs"]
+[ext_resource type="Texture2D" uid="uid://b1vh4d0assdmq" path="res://assets/Poker cards 1.3/stock-photo-minimal-multicolored-polygonal-background.jpg" id="3_vluqm"]
+[ext_resource type="Shader" path="res://client/shaders/background.gdshader" id="3_xkm2t"]
+[ext_resource type="Texture2D" uid="uid://clcv0i6tl4fd4" path="res://assets/Poker cards 1.3/istockphoto-1385204442-612x612.jpg" id="4_myayo"]
+[ext_resource type="PackedScene" uid="uid://b8mwkgtyj50ny" path="res://client/scenes/chat_box.tscn" id="4_n7wv5"]
+[ext_resource type="Script" path="res://client/scenes/pile.gd" id="8_lvh56"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_68c2s"]
+shader = ExtResource("3_xkm2t")
+shader_parameter/scroll_speed = 0.03
+shader_parameter/angle_degrees = 45.0
+shader_parameter/repeat_x = 3.0
+shader_parameter/repeat_y = 3.0
+shader_parameter/row_offset = 1.0
+shader_parameter/texture_to_scroll = ExtResource("4_myayo")
 
 [node name="client" type="Node2D"]
 script = ExtResource("1_eont2")
 player_scene = ExtResource("1_8q2cd")
 
-[node name="deck" parent="." instance=ExtResource("3_cgyhs")]
+[node name="Control" type="Control" parent="."]
+custom_minimum_size = Vector2(47.05, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_right = 1153.0
+offset_bottom = 643.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+modulate = Color(1, 1, 1, 0.372549)
+material = SubResource("ShaderMaterial_68c2s")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_vluqm")
+
+[node name="chat_box" parent="Control" instance=ExtResource("4_n7wv5")]
+custom_minimum_size = Vector2(400, 200)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_bottom = 0.0
+offset_left = -400.0
+offset_bottom = 200.0
+grow_horizontal = 0
+grow_vertical = 1
+
+[node name="deck" parent="Control" instance=ExtResource("3_cgyhs")]
+layout_mode = 1
+offset_left = 112.0
+offset_top = 186.0
+offset_right = 112.0
+offset_bottom = 186.0
+
+[node name="pile" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -149.75
+offset_bottom = -149.75
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_lvh56")

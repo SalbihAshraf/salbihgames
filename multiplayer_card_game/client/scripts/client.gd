@@ -1,27 +1,37 @@
+class_name Client
 extends Node2D
 
 @export var player_scene: PackedScene
-var players = []
-@onready var deck: Deck = $deck
+@onready var deck: Deck = $Control/deck
+@onready var control: Control = $Control
+@onready var pile: Control = $Control/pile
 
+var played_card: Card
+
+var players: Array[Player] = []
+var list = [1,2,3,4,5,6,7,8]
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	print(list.back())
+	control.size = get_viewport_rect().size
 	for i in GameManager.Players:
 		var current_player = player_scene.instantiate()
 		current_player.name = str(GameManager.Players[i].id)
 		current_player.id = GameManager.Players[i].id
 		current_player.player_name = GameManager.Players[i].name
 		add_child(current_player)
-		players.append(current_player)
+		
 	
 	if multiplayer.is_server():
-		for i in players:
-			for j in range(7):
-				i.draw_card.rpc(deck.deck_contents.pick_random())
-			print(i.player_hand)
+		await get_tree().create_timer(1).timeout
+		for j in range(7):
+			for i in get_tree().get_nodes_in_group("players"):
+				i.draw_card()
+				await get_tree().create_timer(0.05).timeout
 	
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+@warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
 	pass

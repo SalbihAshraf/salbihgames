@@ -11,6 +11,7 @@ card_scene = ExtResource("3_gkg1u")
 
 [node name="player_hand" parent="." instance=ExtResource("2_7gpee")]
 unique_name_in_owner = true
+position = Vector2(590, 350)
 
 [node name="players_cards" type="Label" parent="."]
 offset_right = 40.0

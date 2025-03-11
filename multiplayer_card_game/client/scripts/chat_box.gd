@@ -1,10 +1,23 @@
 extends Control
 
+
+@onready var v_box_container: VBoxContainer = $VBoxContainer
+@onready var unread_messages_number: Label = $HBoxContainer/unread_messages
+var unread_messages: int = 0:
+	set(val):
+		if val == 0:
+			unread_messages_number.hide()
+		else:
+			unread_messages = val
+			unread_messages_number.show()
+			unread_messages_number.text = str(unread_messages)
+
+
 @onready var messages: TextEdit = $VBoxContainer/messages
 @onready var send: Button = $VBoxContainer/HBoxContainer/send
 @onready var message: LineEdit = $VBoxContainer/HBoxContainer/message
 @onready var text_edit: TextEdit = $TextEdit
-@onready var id = multiplayer.get_unique_id()
+@onready var id: int = multiplayer.get_unique_id()
 var username: String
 var msg: String
 
@@ -16,8 +29,6 @@ func _ready() -> void:
 		messages.text += "Player has connected: " + GameManager.Players[i].name + "\n"
 		if GameManager.Players[i].id == id:
 			username = GameManager.Players[i].name
-	pass # Replace with function body.
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -43,7 +54,6 @@ func _on_send_pressed() -> void:
 	if message.text != "" :
 		rpc("msg_rpc", username, message.text)
 		message.text = ""
-	pass # Replace with function body.
 
 @rpc("any_peer", "call_local")
 func msg_rpc(sender, data):
@@ -51,4 +61,15 @@ func msg_rpc(sender, data):
 		messages.text += str(sender + " (You): ", data, "\n")
 	else:
 		messages.text += str(sender + ": ", data, "\n")
-	messages.scroll_vertical = INF
+		if not v_box_container.visible:
+			unread_messages += 1
+
+		
+	messages.scroll_vertical = messages.get_line_count()
+
+func _on_button_pressed() -> void:
+	if v_box_container.visible:
+		v_box_container.hide()
+	else:
+		v_box_container.show()
+		unread_messages = 0

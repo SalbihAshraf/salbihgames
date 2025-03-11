@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://75ye0455g5mx"]
+
+[ext_resource type="Script" path="res://client/scripts/card.gd" id="1_ujrt3"]
+[ext_resource type="Texture2D" uid="uid://dmb1853stj6bm" path="res://assets/Poker cards 1.3/1.2 Poker cards.png" id="2_ekgtu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ktwky"]
+size = Vector2(48, 64)
+
+[node name="card" type="Node2D"]
+scale = Vector2(2, 2)
+script = ExtResource("1_ujrt3")
+
+[node name="card_face_texture" type="Sprite2D" parent="."]
+texture = ExtResource("2_ekgtu")
+hframes = 15
+vframes = 5
+
+[node name="card_back_texture" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_ekgtu")
+hframes = 15
+vframes = 5
+frame = 60
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -24.0
+offset_top = -32.0
+offset_right = 24.0
+offset_bottom = 32.0
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_ktwky")
+
+[connection signal="mouse_entered" from="Control" to="." method="_on_control_mouse_entered"]
+[connection signal="mouse_exited" from="Control" to="." method="_on_control_mouse_exited"]
