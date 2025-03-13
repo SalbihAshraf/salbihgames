@@ -28,7 +28,8 @@ window/stretch/mode="canvas_items"
 
 folder_colors={
 "res://client/scenes/": "blue",
-"res://client/scripts/": "red"
+"res://client/scripts/": "red",
+"res://client/shaders/": "pink"
 }
 
 [global_group]
