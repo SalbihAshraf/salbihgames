@@ -20,7 +20,6 @@ var player_hand = []:
 		else:
 			player_hand_node.remove_card()
 		
-@onready var deck_reference:Deck = $"../Control/deck"
 
 func _process(delta: float) -> void:
 	display_players_cards()
@@ -42,18 +41,18 @@ func _ready() -> void:
 func add_to_hand(picked_card):
 	player_hand.append(picked_card)
 	print(str(id), " : ", str(picked_card))
-	deck_reference.deck_contents.erase(picked_card)
+	client.deck.deck_contents.erase(picked_card)
 	if multiplayer.get_unique_id() == id:
 		var card: Card = card_scene.instantiate()
 		card.suit = picked_card[0]
 		card.rank = picked_card[1]
 		player_hand_node.hand.append(card)
-		card.position = deck_reference.position
+		card.position = client.deck.position
 		player_hand_node.add_child(card)
 		player_hand_node.update_hand_positions()
 
 func draw_card():
-	var picked_card = deck_reference.deck_contents.pick_random()
+	var picked_card = client.deck.deck_contents.pick_random()
 	add_to_hand.rpc(picked_card)
 	
 func play_card(card):
@@ -79,7 +78,7 @@ func display_players_cards():
 	var string = ""
 	for i in get_tree().get_nodes_in_group("players"):
 		string += (i.player_name + str(i.player_hand) + "\n")
-	string += (str(client.pile.contents) + "\n")
+	string += (str(client.pile.contents))
 	players_cards.text = string
 
 func _input(event: InputEvent) -> void:

@@ -1,6 +1,7 @@
 class_name PlayerHand
 extends Node2D
 
+var clicked: bool
 @export var card_scene: PackedScene
 @onready var hand: Array[Card]
 
@@ -20,15 +21,15 @@ var card_length: int = 96
 @export var x_sep: int
 @export var y_min: int
 @export var y_max: int
-@onready var h_box_container: HBoxContainer = %HBoxContainer
-@onready var v_box_container: VBoxContainer = %VBoxContainer
 
 @onready var player: Player = self.get_parent()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	v_box_container.position.x = (get_viewport().size.x / 2) - (h_box_container.size.x / 2)
-	v_box_container.position.y = get_viewport().size.y - 80
+	$AnimationPlayer.play("wave")
+	connect_signals()
+	
+	
 	
 func raycast_check_for_card():
 	var space_state = get_world_2d().direct_space_state
@@ -72,11 +73,12 @@ func update_hand_positions():
 		var rot_multiplier := rotation_curve.sample(1.0 / (cards - 1) * i)
 		#
 		if cards == 1:
-			y_multiplier = 0.0
+			y_multiplier = 1
 			rot_multiplier = 0.0
-		if cards <= 3:
-			card_length = 90
-			y_multiplier / 2
+		elif cards <= 2:
+			y_multiplier = 1.1
+		elif cards <= 3:
+			card_length = 180
 		else:
 			card_length = 600/cards
 		
@@ -112,19 +114,19 @@ func animate_card_to_pile(card, new_position):
 	var tween_scale = get_tree().create_tween()
 	var tween_rotate = get_tree().create_tween()
 	
-	GameManager.random = randf_range(-1, 1)
+	GameManager.random = randf_range(-0.5, 0.5)
 	await tween_scale.tween_property(card.card_face_texture, "scale", Vector2(1.5, 1.5), 0.2)
 	tween_rotate.tween_property(card.card_face_texture, "rotation", GameManager.random, 0.2)
 	tween_scale.tween_property(card.card_face_texture, "scale", Vector2(1, 1), 0.2)
 	tween_pos.tween_property(card, "position", new_position, 0.4).set_ease(Tween.EASE_IN)
 	await tween_pos.finished
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(delta: float) -> void:
 	pass
 
-func _on_play_pressed() -> void:
+func play_card() -> void:
 	if current_clicked_card:
-		var new_pos = player.client.pile.position
+		var new_pos = player.client.pile.global_position
 		await animate_card_to_pile(current_clicked_card, new_pos)
 		hand.erase(current_clicked_card)
 		player.play_card(current_clicked_card)
@@ -133,7 +135,8 @@ func _on_play_pressed() -> void:
 		
 	pass # Replace with function body.
 
-func _on_suit_pressed() -> void:
+
+func sort_by_suit() -> void:
 	var temp_hand:Array[Card] = []
 	for i in GameManager.suits:
 		for j in hand:
@@ -145,7 +148,7 @@ func _on_suit_pressed() -> void:
 	print("Sorted by Suit")
 
 
-func _on_rank_pressed() -> void:
+func sort_by_rank() -> void:
 	var temp_hand:Array[Card] = []
 	var sorted_by 
 	if rank_button_reversed:
@@ -162,7 +165,7 @@ func _on_rank_pressed() -> void:
 	print("Sorted by Rank")
 	rank_button_reversed = !rank_button_reversed
 
-func _on_shuffle_pressed() -> void:
+func shuffle_cards() -> void:
 	hand.shuffle()
 	update_hand_positions()
 
@@ -174,4 +177,9 @@ func _input(event: InputEvent) -> void:
 				current_clicked_card = card
 
 
+func connect_signals():
+	Ui.connect("suit_signal", sort_by_suit)
+	Ui.connect("rank_signal", sort_by_rank)
+	Ui.connect("shuffle_signal", shuffle_cards)
+	Ui.connect("play_card_signal", play_card)
 	

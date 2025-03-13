@@ -1,13 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://dfiasn6rdddtv"]
+[gd_scene load_steps=11 format=3 uid="uid://dfiasn6rdddtv"]
 
 [ext_resource type="PackedScene" uid="uid://bc1m74cb0ut5w" path="res://client/scenes/player.tscn" id="1_8q2cd"]
 [ext_resource type="Script" path="res://client/scripts/client.gd" id="1_eont2"]
+[ext_resource type="Script" path="res://client/scripts/UI.gd" id="3_5mf76"]
 [ext_resource type="PackedScene" uid="uid://dhbr7dlngnvxx" path="res://client/scenes/deck.tscn" id="3_cgyhs"]
 [ext_resource type="Texture2D" uid="uid://b1vh4d0assdmq" path="res://assets/Poker cards 1.3/stock-photo-minimal-multicolored-polygonal-background.jpg" id="3_vluqm"]
 [ext_resource type="Shader" path="res://client/shaders/background.gdshader" id="3_xkm2t"]
 [ext_resource type="Texture2D" uid="uid://clcv0i6tl4fd4" path="res://assets/Poker cards 1.3/istockphoto-1385204442-612x612.jpg" id="4_myayo"]
 [ext_resource type="PackedScene" uid="uid://b8mwkgtyj50ny" path="res://client/scenes/chat_box.tscn" id="4_n7wv5"]
-[ext_resource type="Script" path="res://client/scenes/pile.gd" id="8_lvh56"]
+[ext_resource type="Script" path="res://client/scripts/pile.gd" id="8_lvh56"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_68c2s"]
 shader = ExtResource("3_xkm2t")
@@ -22,7 +23,7 @@ shader_parameter/texture_to_scroll = ExtResource("4_myayo")
 script = ExtResource("1_eont2")
 player_scene = ExtResource("1_8q2cd")
 
-[node name="Control" type="Control" parent="."]
+[node name="UI" type="Control" parent="."]
 custom_minimum_size = Vector2(47.05, 0)
 layout_mode = 3
 anchors_preset = 15
@@ -33,8 +34,9 @@ offset_right = 1153.0
 offset_bottom = 643.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("3_5mf76")
 
-[node name="TextureRect" type="TextureRect" parent="Control"]
+[node name="TextureRect" type="TextureRect" parent="UI"]
 modulate = Color(1, 1, 1, 0.372549)
 material = SubResource("ShaderMaterial_68c2s")
 layout_mode = 1
@@ -45,34 +47,98 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_vluqm")
 
-[node name="chat_box" parent="Control" instance=ExtResource("4_n7wv5")]
-z_index = 1
-custom_minimum_size = Vector2(400, 200)
+[node name="MarginContainer" type="MarginContainer" parent="UI"]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_bottom = 0.0
-offset_left = -400.0
-offset_bottom = 200.0
-grow_horizontal = 0
-grow_vertical = 1
-
-[node name="deck" parent="Control" instance=ExtResource("3_cgyhs")]
-layout_mode = 1
-offset_left = 112.0
-offset_top = 186.0
-offset_right = 112.0
-offset_bottom = 186.0
-
-[node name="pile" type="Control" parent="Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_top = -149.75
-offset_bottom = -149.75
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="deck" parent="UI/MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_cgyhs")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="pile" type="Control" parent="UI/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+size_flags_stretch_ratio = 2.0
 script = ExtResource("8_lvh56")
+
+[node name="Control" type="Control" parent="UI/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control2" type="Control" parent="UI/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer/VBoxContainer/Control2"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 10
+
+[node name="play_button" type="Button" parent="UI/MarginContainer/VBoxContainer/Control2/VBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Play"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/MarginContainer/VBoxContainer/Control2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="suit_button" type="Button" parent="UI/MarginContainer/VBoxContainer/Control2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Suit"
+
+[node name="rank_button" type="Button" parent="UI/MarginContainer/VBoxContainer/Control2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Rank"
+
+[node name="shuffle_button" type="Button" parent="UI/MarginContainer/VBoxContainer/Control2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Shuffle"
+
+[node name="chat_box" parent="UI/MarginContainer" instance=ExtResource("4_n7wv5")]
+z_index = 99
+custom_minimum_size = Vector2(400, 300)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 0
+
+[connection signal="pressed" from="UI/MarginContainer/VBoxContainer/Control2/VBoxContainer/play_button" to="UI" method="_on_play_button_pressed"]
+[connection signal="pressed" from="UI/MarginContainer/VBoxContainer/Control2/VBoxContainer/HBoxContainer/suit_button" to="UI" method="_on_suit_button_pressed"]
+[connection signal="pressed" from="UI/MarginContainer/VBoxContainer/Control2/VBoxContainer/HBoxContainer/rank_button" to="UI" method="_on_rank_button_pressed"]
+[connection signal="pressed" from="UI/MarginContainer/VBoxContainer/Control2/VBoxContainer/HBoxContainer/shuffle_button" to="UI" method="_on_shuffle_button_pressed"]

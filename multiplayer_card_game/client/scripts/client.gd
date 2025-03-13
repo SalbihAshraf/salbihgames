@@ -2,9 +2,10 @@ class_name Client
 extends Node2D
 
 @export var player_scene: PackedScene
-@onready var deck: Deck = $Control/deck
-@onready var control: Control = $Control
-@onready var pile: Control = $Control/pile
+@onready var deck = %deck
+
+@onready var pile: Pile = %pile
+
 
 var played_card: Card
 
@@ -13,7 +14,6 @@ var list = [1,2,3,4,5,6,7,8]
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	print(list.back())
-	control.size = get_viewport_rect().size
 	for i in GameManager.Players:
 		var current_player = player_scene.instantiate()
 		current_player.name = str(GameManager.Players[i].id)
