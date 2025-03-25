@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cyrqhdy1ko7w6"]
+
+[ext_resource type="PackedScene" uid="uid://d3lp22nnht6g7" path="res://World/world.tscn" id="1_geab1"]
+[ext_resource type="PackedScene" uid="uid://bq6okphjs60pl" path="res://Player/player.tscn" id="2_rxeat"]
+
+[node name="game" type="Node"]
+
+[node name="ui" type="CanvasLayer" parent="."]
+
+[node name="player" parent="." instance=ExtResource("2_rxeat")]
+z_index = 1
+
+[node name="world" parent="." instance=ExtResource("1_geab1")]

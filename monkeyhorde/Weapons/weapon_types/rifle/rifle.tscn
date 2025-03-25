@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhx03jiwdo6rc"]
+
+[ext_resource type="Script" uid="uid://groshh7dkwxr" path="res://Weapons/weapon_types/rifle/rifle.gd" id="1_7vw3c"]
+[ext_resource type="PackedScene" uid="uid://dhg3a1spi48u0" path="res://Bullets/bullet.tscn" id="2_1n0qb"]
+[ext_resource type="Texture2D" uid="uid://ddli6piuvpvi1" path="res://Weapons/assets/GunsPack/Guns/AK47.png" id="2_5note"]
+
+[node name="rifle" type="Node2D"]
+script = ExtResource("1_7vw3c")
+bullet_scene = ExtResource("2_1n0qb")
+fire_rate = 8.0
+metadata/_custom_type_script = "uid://d3yct1rr11y2t"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(7, 4)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_5note")

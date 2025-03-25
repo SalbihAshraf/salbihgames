@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="PierceBulletStrategy" load_steps=3 format=3 uid="uid://cgbt7q5o0yu6v"]
 
-[ext_resource type="Script" path="res://bullet_mods/pierce_bullet_strategy.gd" id="1_fo1oa"]
+[ext_resource type="Script" uid="uid://ge1i7d7l11d6" path="res://bullet_mods/pierce_bullet_strategy.gd" id="1_fo1oa"]
 [ext_resource type="Texture2D" uid="uid://bfy26ywu04scy" path="res://assets/pierce_item.png" id="2_8ihyw"]
 
 [resource]

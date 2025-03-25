@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dbwkan1l4l43j"]
 
 [ext_resource type="Texture2D" uid="uid://db54wu1j0hxna" path="res://assets/spawn_hole.png" id="1_4e0yy"]
-[ext_resource type="Script" path="res://scenes/spawn_hole.gd" id="1_gdla3"]
+[ext_resource type="Script" uid="uid://c37fqf8nkvlyp" path="res://scenes/spawn_hole.gd" id="1_gdla3"]
 
 [sub_resource type="Gradient" id="Gradient_tk5mr"]
 colors = PackedColorArray(0.309021, 0.180565, 0.157607, 1, 1, 1, 1, 0)

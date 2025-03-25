@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bc3lhkk106fqa"]
+
+[ext_resource type="Shader" uid="uid://ne0plq02agcr" path="res://client/shaders/background.gdshader" id="1_17mdi"]
+[ext_resource type="Texture2D" uid="uid://clcv0i6tl4fd4" path="res://assets/Poker cards 1.3/istockphoto-1385204442-612x612.jpg" id="2_tnsc7"]
+
+[resource]
+shader = ExtResource("1_17mdi")
+shader_parameter/scroll_speed = 0.03
+shader_parameter/angle_degrees = 45.0
+shader_parameter/repeat_x = 4.0
+shader_parameter/repeat_y = 4.0
+shader_parameter/row_offset = 1.0
+shader_parameter/texture_to_scroll = ExtResource("2_tnsc7")

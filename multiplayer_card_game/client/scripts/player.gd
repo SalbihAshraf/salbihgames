@@ -64,7 +64,7 @@ func display_card(suit, rank, player_id, random):
 	var new_card: Card = card_scene.instantiate()
 	new_card.suit = suit
 	new_card.rank = rank
-	new_card.rotation += random
+	new_card.rotation += float(random)
 	for i in get_tree().get_nodes_in_group("players"):
 		if i.id == player_id:
 			i.player_hand.erase([suit, rank])

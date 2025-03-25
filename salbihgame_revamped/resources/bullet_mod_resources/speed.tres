@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="SpeedBulletStrategy" load_steps=3 format=3 uid="uid://t0oqikxnaayw"]
 
-[ext_resource type="Script" path="res://bullet_mods/speed_bullet_strategy.gd" id="1_7g8i7"]
+[ext_resource type="Script" uid="uid://dcdyttgp8o37d" path="res://bullet_mods/speed_bullet_strategy.gd" id="1_7g8i7"]
 [ext_resource type="Texture2D" uid="uid://c5ci3pcee2d53" path="res://assets/coffee_item.png" id="2_g32tr"]
 
 [resource]

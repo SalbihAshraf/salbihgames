@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://ylmlyl5qao7w"]
 
 [ext_resource type="FontFile" uid="uid://b4ub1bi5g0p3f" path="res://fonts/TeenyTinyPixls-o2zo.ttf" id="1_jm3kp"]
-[ext_resource type="Script" path="res://scenes/shop_slot.gd" id="1_q1bbm"]
+[ext_resource type="Script" uid="uid://cvpglbr7mrruj" path="res://scenes/shop_slot.gd" id="1_q1bbm"]
 [ext_resource type="Texture2D" uid="uid://bjwrkhyfedsew" path="res://assets/heart_item.png" id="2_b3yuv"]
 
 [node name="ShopSlot" type="PanelContainer"]

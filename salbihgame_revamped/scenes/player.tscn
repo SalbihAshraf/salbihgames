@@ -1,9 +1,9 @@
 [gd_scene load_steps=38 format=3 uid="uid://bpm1idf7tcdk5"]
 
-[ext_resource type="Script" path="res://scenes/player.gd" id="1_ba41r"]
+[ext_resource type="Script" uid="uid://cw4fp8sx8j87t" path="res://scenes/player.gd" id="1_ba41r"]
 [ext_resource type="Texture2D" uid="uid://clg7bhjgrtjf7" path="res://assets/Small-8-Direction-Characters_by_AxulArt.png" id="2_xceie"]
-[ext_resource type="Script" path="res://scenes/animated_sprite_2d.gd" id="3_gl8h3"]
-[ext_resource type="Script" path="res://scenes/camera_2d.gd" id="3_i0h38"]
+[ext_resource type="Script" uid="uid://cmkiwhcysqg2q" path="res://scenes/animated_sprite_2d.gd" id="3_gl8h3"]
+[ext_resource type="Script" uid="uid://bxs51spos01os" path="res://scenes/camera_2d.gd" id="3_i0h38"]
 [ext_resource type="FontFile" uid="uid://b4ub1bi5g0p3f" path="res://fonts/TeenyTinyPixls-o2zo.ttf" id="4_ob4kt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8i8ol"]
@@ -280,8 +280,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lef1g"]
 _data = {
-"RESET": SubResource("Animation_xbydl"),
-"damaged": SubResource("Animation_3txc6")
+&"RESET": SubResource("Animation_xbydl"),
+&"damaged": SubResource("Animation_3txc6")
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_37gvl"]
@@ -338,7 +338,7 @@ show_percentage = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite2D"]
 libraries = {
-"": SubResource("AnimationLibrary_lef1g")
+&"": SubResource("AnimationLibrary_lef1g")
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

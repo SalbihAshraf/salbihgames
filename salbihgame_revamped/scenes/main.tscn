@@ -1,10 +1,10 @@
 [gd_scene load_steps=14 format=3 uid="uid://dlgjgkp0r7e4a"]
 
-[ext_resource type="Script" path="res://scenes/main.gd" id="1_xa2st"]
+[ext_resource type="Script" uid="uid://b1gfa4fhyx3fi" path="res://scenes/main.gd" id="1_xa2st"]
 [ext_resource type="PackedScene" uid="uid://4jy3udilhvbn" path="res://scenes/map.tscn" id="1_yoneb"]
 [ext_resource type="PackedScene" uid="uid://bpm1idf7tcdk5" path="res://scenes/player.tscn" id="2_ry62n"]
 [ext_resource type="PackedScene" uid="uid://dbwkan1l4l43j" path="res://scenes/spawn_hole.tscn" id="5_t8xh1"]
-[ext_resource type="Script" path="res://scenes/bullet_manager.gd" id="6_suuet"]
+[ext_resource type="Script" uid="uid://bkrix2yc5abpc" path="res://scenes/bullet_manager.gd" id="6_suuet"]
 [ext_resource type="PackedScene" uid="uid://pj43mv4hcjpv" path="res://scenes/bullet.tscn" id="7_2gkpn"]
 [ext_resource type="PackedScene" uid="uid://cx8l4bi0835ys" path="res://scenes/upgrade.tscn" id="8_h2byy"]
 [ext_resource type="Resource" uid="uid://c7tx21mrvvste" path="res://resources/player_mod_resources/player_reload.tres" id="9_byppo"]
@@ -31,7 +31,6 @@ script = ExtResource("1_xa2st")
 position = Vector2(336, 248)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-visible = false
 navigation_polygon = SubResource("NavigationPolygon_dd2o4")
 
 [node name="Timer" type="Timer" parent="."]

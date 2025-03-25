@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://cx8l4bi0835ys"]
 
-[ext_resource type="Script" path="res://upgrade.gd" id="1_wqnq2"]
+[ext_resource type="Script" uid="uid://b8ttjprp7ttdj" path="res://upgrade.gd" id="1_wqnq2"]
 [ext_resource type="Texture2D" uid="uid://bfy26ywu04scy" path="res://assets/pierce_item.png" id="2_5fhc2"]
-[ext_resource type="Script" path="res://bullet_mods/base_bullet_strategy.gd" id="2_qbtij"]
+[ext_resource type="Script" uid="uid://chr4lve1er0jp" path="res://bullet_mods/base_bullet_strategy.gd" id="2_qbtij"]
 [ext_resource type="FontFile" uid="uid://b4ub1bi5g0p3f" path="res://fonts/TeenyTinyPixls-o2zo.ttf" id="4_g710s"]
 
 [sub_resource type="Resource" id="Resource_xufpd"]

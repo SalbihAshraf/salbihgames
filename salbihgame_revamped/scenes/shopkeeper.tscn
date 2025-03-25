@@ -1,6 +1,6 @@
 [gd_scene load_steps=25 format=3 uid="uid://2jliossg20ya"]
 
-[ext_resource type="Script" path="res://scenes/shopkeeper.gd" id="1_3ot81"]
+[ext_resource type="Script" uid="uid://hb03xow2cjdw" path="res://scenes/shopkeeper.gd" id="1_3ot81"]
 [ext_resource type="PackedScene" uid="uid://cx8l4bi0835ys" path="res://scenes/upgrade.tscn" id="2_idtod"]
 [ext_resource type="Texture2D" uid="uid://bd7jh0vnadbmv" path="res://assets/ibby_shop.png" id="3_kekxd"]
 [ext_resource type="Texture2D" uid="uid://bp1q2l6wfj1kq" path="res://assets/cash_bubble-sheet.png" id="4_0yu8y"]
